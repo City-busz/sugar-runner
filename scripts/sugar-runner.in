@@ -1,4 +1,4 @@
-#!/usr/bin/python2 -u
+#!/usr/bin/python -u
 
 # Copyright (C) 2013, Daniel Narvaez
 #
@@ -66,7 +66,7 @@ def _allow_to_run_x():
     except IOError:
         return
 
-    print "We need to allow everybody to run the X server"
+    print("We need to allow everybody to run the X server")
     tweak_wrapper = os.path.join(helpers_dir, "tweak-xwrapper")
     subprocess.check_call(["sudo", "-k", tweak_wrapper])
 
@@ -83,7 +83,7 @@ def _run_xephyr_window(resolution):
 
 def _get_tty_number():
     tty = subprocess.check_output(["tty"])
-    head, tail = os.path.split(tty)
+    head, tail = os.path.split(tty.decode('ascii'))
     return tail.strip().replace("tty", "")
 
 
